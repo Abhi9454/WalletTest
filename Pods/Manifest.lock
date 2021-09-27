@@ -1,0 +1,24 @@
+PODS:
+  - CryptoSwift (1.4.1)
+  - Starscream (3.1.1)
+  - WalletConnectSwift (1.6.0):
+    - CryptoSwift (~> 1.4)
+    - Starscream (~> 3.1)
+
+DEPENDENCIES:
+  - WalletConnectSwift
+
+SPEC REPOS:
+  trunk:
+    - CryptoSwift
+    - Starscream
+    - WalletConnectSwift
+
+SPEC CHECKSUMS:
+  CryptoSwift: 0bc800a7e6a24c4fc9ebeab97d44b0d5f73a78bd
+  Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
+  WalletConnectSwift: 1fbff8f5315bd8d41596773ca1b384aa873b6824
+
+PODFILE CHECKSUM: 527a61780d816de0eaeaafbde889996c187a39ee
+
+COCOAPODS: 1.10.1
