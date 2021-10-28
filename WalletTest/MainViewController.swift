@@ -15,9 +15,9 @@ class MainViewController: UIViewController {
         /// https://docs.walletconnect.org/mobile-linking#for-ios
         /// **NOTE**: Majority of wallets support universal links that you should normally use in production application
         /// Here deep link provided for integration with server test app only
-        let deepLinkUrl = "wc://wc?uri=\(connectionUrl)"
+        let deepLinkUrl = "https://metamask.app.link/wc?uri=\(connectionUrl)"
 
-        if let url = URL(string: deepLinkUrl), UIApplication.shared.canOpenURL(url) {
+        if let url = URL(string: connectionUrl), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         } else {
             handshakeController = HandshakeViewController.create(code: connectionUrl)
@@ -91,3 +91,4 @@ extension UIAlertController {
         controller.present(alert.withCloseButton(), animated: true)
     }
 }
+

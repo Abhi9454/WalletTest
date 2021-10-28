@@ -90,3 +90,16 @@ extension WalletConnect: ClientDelegate {
         // do nothing
     }
 }
+
+
+extension WCURL {
+    var partiallyPercentEncodedStr: String {
+        let params = "bridge=\(bridgeURL.absoluteString)&key=\(key)"
+            .addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? ""
+        return "wc:\(topic)@\(version)?\(params))"
+    }
+
+    var fullyPercentEncodedStr: String {
+        absoluteString.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? ""
+    }
+}
