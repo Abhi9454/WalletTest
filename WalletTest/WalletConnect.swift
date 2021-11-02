@@ -76,6 +76,8 @@ extension WalletConnect: ClientDelegate {
 
     func client(_ client: Client, didConnect session: Session) {
         self.session = session
+        AppData.shared.peerId = session.walletInfo?.peerId ?? ""
+        AppData.shared.accounts = session.walletInfo?.accounts ?? []
         let sessionData = try! JSONEncoder().encode(session)
         UserDefaults.standard.set(sessionData, forKey: sessionKey)
         delegate.didConnect()
@@ -87,7 +89,9 @@ extension WalletConnect: ClientDelegate {
     }
 
     func client(_ client: Client, didUpdate session: Session) {
-        // do nothing
+        AppData.shared.peerId = session.walletInfo?.peerId ?? ""
+        AppData.shared.accounts = session.walletInfo?.accounts ?? []
+
     }
 }
 

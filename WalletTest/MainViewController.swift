@@ -40,6 +40,18 @@ class MainViewController: UIViewController {
             }
         }
     }
+    
+    func getCurrentSession() {
+        let peerId = AppData.shared.peerId
+        print("peer id: \(peerId)")
+        
+        let accounts = AppData.shared.accounts
+        print("accounts: \(accounts)")
+    }
+    
+    @IBAction func getSessionAction(_ sender: Any) {
+        getCurrentSession()
+    }
 }
 
 extension MainViewController: WalletConnectDelegate {
@@ -92,3 +104,26 @@ extension UIAlertController {
     }
 }
 
+class AppData {
+    static let shared = AppData()
+    
+    private init() {}
+    
+    var peerId: String {
+        get{
+            UserDefaults.standard.string(forKey: "peerId") ?? ""
+        }
+        set{
+            UserDefaults.standard.set(newValue, forKey: "peerId")
+        }
+    }
+    
+    var accounts: [Any] {
+        get{
+            UserDefaults.standard.array(forKey: "accounts") ?? []
+        }
+        set{
+            UserDefaults.standard.set(newValue, forKey: "accounts")
+        }
+    }
+}

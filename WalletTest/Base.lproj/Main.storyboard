@@ -23,6 +23,14 @@
                                     <action selector="connect:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ViU-4F-GEu"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jC7-33-hUm">
+                                <rect key="frame" x="167" y="556" width="81" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Get session"/>
+                                <connections>
+                                    <action selector="getSessionAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jvV-YK-Qd0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
