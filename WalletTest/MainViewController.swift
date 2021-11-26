@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class MainViewController: UIViewController {
     var handshakeController: HandshakeViewController!
@@ -23,12 +24,16 @@ class MainViewController: UIViewController {
             handshakeController = HandshakeViewController.create(code: connectionUrl)
             present(handshakeController, animated: true)
         }
+        
+        AppData.shared.sendNotification(title: "Wallet Connect", body: "notification")
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         walletConnect = WalletConnect(delegate: self)
         walletConnect.reconnectIfNeeded()
+        
+        AppData.shared.requestNotificationAuthorization()
     }
 
     func onMainThread(_ closure: @escaping () -> Void) {
@@ -124,6 +129,37 @@ class AppData {
         }
         set{
             UserDefaults.standard.set(newValue, forKey: "accounts")
+        }
+    }
+    
+    private let userNotificationCenter = UNUserNotificationCenter.current()
+
+    func requestNotificationAuthorization() {
+        let authOptions = UNAuthorizationOptions.init(arrayLiteral: .alert, .badge, .sound)
+        
+        self.userNotificationCenter.requestAuthorization(options: authOptions) { (success, error) in
+            if let error = error {
+                print("Error: ", error)
+            }
+        }
+    }
+
+    func sendNotification(title: String, body: String) {
+        let notificationContent = UNMutableNotificationContent()
+        notificationContent.title = title
+        notificationContent.body = body
+        notificationContent.badge = NSNumber(value: 3)
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2,
+                                                        repeats: false)
+        let request = UNNotificationRequest(identifier: "testNotification",
+                                            content: notificationContent,
+                                            trigger: trigger)
+        
+        userNotificationCenter.add(request) { (error) in
+            if let error = error {
+                print("Notification Error: ", error)
+            }
         }
     }
 }
